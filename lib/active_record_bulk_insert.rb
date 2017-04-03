@@ -49,6 +49,9 @@ ActiveRecord::Base.class_eval do
     when 4
       column = try(:column_for_attribute, key)
       connection.quote(value, column)
+    when 3
+      column = columns_hash[key.to_s]
+      connection.quote(value, column)
     else
       sanitize(value)
     end
